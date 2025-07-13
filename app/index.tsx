@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, Pressable, StyleSheet } from "react-native";
+import { View, Image, Pressable, StyleSheet, ScrollView } from "react-native";
 
 const Krutopijeramikecil = [
   "https://i.pinimg.com/736x/5c/db/09/5cdb09c55bceddbe99670372780546ae.jpg",
@@ -25,14 +25,10 @@ const Krutopijeramibesar = [
   "https://image.ggwp.id/post/20250306/teknikjinbe5.jpg",
 ];
 
+
 export default function App() {
   const [states, setStates] = useState(
-    Array(9)
-      .fill(0)
-      .map(() => ({
-        isAlt: false,
-        scale: 1,
-      }))
+    Array(9).fill(0).map(() => ({ isAlt: false, scale: 1 }))
   );
 
   const handlePress = (idx: number) => {
@@ -40,7 +36,10 @@ export default function App() {
       prev.map((item, i) => {
         if (i !== idx) return item;
         const nextScale = Math.min(item.scale * 1.2, 2);
-        return { isAlt: true, scale: nextScale };
+        return {
+          isAlt: true,
+          scale: nextScale,
+        };
       })
     );
   };
@@ -55,14 +54,15 @@ export default function App() {
             style={styles.cell}
           >
             <Image
-              source={{ uri: states[idx].isAlt ? Krutopijeramibesar[idx] : img }}
+              source={{
+                uri: states[idx].isAlt ? Krutopijeramibesar[idx] : img,
+              }}
               style={[
                 styles.image,
                 {
                   transform: [{ scale: states[idx].scale }],
                 },
               ]}
-              resizeMode="cover"
             />
           </Pressable>
         ))}
@@ -72,31 +72,27 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundColor: "#f0f0f5",
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
-  
-grid: {
-  width: 330,
-  flexDirection: "row",
-  flexWrap: "wrap",
+  grid: {
+    width: 330,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
-
-cell: {
-  width: 110,
-  height: 110,
-  justifyContent: "center",
-  alignItems: "center",
+  cell: {
+    width: 110,
+    height: 110,
+    justifyContent: "center",
+    alignItems: "center",
   },
-
-image: {
-  width: 100,
-  height: 100,
-  borderRadius: 10,
-  backgroundColor: "#ccc",
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    backgroundColor: "#ddd",
   },
-
 });
