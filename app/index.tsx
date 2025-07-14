@@ -30,15 +30,15 @@ const imageData = [
     alternate: 'https://image.ggwp.id/post/20250306/teknikjinbe5.jpg'
   },
 ];
-
 const CELL_SIZE = 100;
 const GRID_WIDTH = CELL_SIZE * 3 + 30;
-
-export default function App() {
+export default function App() 
+{
   const [states, setStates] = useState(
-    Array(9).fill(0).map(() => ({ isAlt: false, scale: 1 }))
+    Array(9).fill(0).map(() => ({
+      isAlt: false, scale: 1 
+    }))
   );
-
   const handlePress = (idx) => {
     setStates((prev) =>
       prev.map((item, i) => {
@@ -52,23 +52,31 @@ export default function App() {
     );
   };
 
-  return (
+return (
     <View style={styles.container}>
-      <View style={styles.grid}>
+      <View style={
+        styles.grid
+        }>
         {imageData.map((img, idx) => (
           <Pressable
             key={img.id}
-            onPress={() => handlePress(idx)}
+            onPress={() => 
+              handlePress(idx)}
             style={styles.cell}
           >
             <Image
-              source={{
+              source=
+              {{
                 uri: states[idx].isAlt ? img.alternate : img.primary,
               }}
-              style={[
+              style=
+              {[
                 styles.image,
                 {
-                  transform: [{ scale: states[idx].scale }],
+                  transform:
+                   [{
+                    scale: states[idx].scale 
+                  }],
                 },
               ]}
               resizeMode="cover"
@@ -80,27 +88,33 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+const styles = StyleSheet.create
+({
+  container: 
+  {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
   },
-  grid: {
+
+  grid: 
+  {
     width: GRID_WIDTH,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
   },
-  cell: {
+  cell: 
+  {
     width: CELL_SIZE,
     height: CELL_SIZE,
     margin: 5,
     justifyContent: "center",
     alignItems: "center",
   },
-  image: {
+  image:
+   {
     width: "100%",
     height: "100%",
     borderRadius: 8,
