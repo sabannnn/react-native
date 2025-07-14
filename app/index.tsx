@@ -55,7 +55,6 @@ export default function App() {
     setStates((prev) =>
       prev.map((item, i) => {
         if (i !== idx) return item;
-  
         const nextScale = Math.min(item.scale * 1.2, 2);
         return {
           isAlt: true,
