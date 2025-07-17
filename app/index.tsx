@@ -40,18 +40,30 @@ export default function ImageGrid() {
       prev.map((state, i) => {
         if (i !== index) return state;
 
-        const nextScale =
-          state.scale < 2 ? parseFloat((state.scale * 1.2).toFixed(1)) : 2;
+        if (state.scale >= 2) {
+          return {
+            ...state,
+            isAlternate: !state.isAlternate,
+            scale: 2,
+          };
+        }
 
+        const nextScale = parseFloat((state.scale * 1.2).toFixed(1));
         return {
           isAlternate: !state.isAlternate,
-          scale: nextScale,
+          scale: nextScale > 2 ? 2 : nextScale,
         };
       })
     );
   };
 
-  const renderItem = ({ item, index }: { item: typeof imageData[0]; index: number }) => (
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: typeof imageData[0];
+    index: number;
+  }) => (
     <Pressable
       onPress={() => handlePress(index)}
       style={[
@@ -60,13 +72,16 @@ export default function ImageGrid() {
       ]}
     >
       <Image
-        source={{ uri: states[index].isAlternate ? item.alternate : item.primary }}
+        source={{
+          uri: states[index].isAlternate
+            ? item.alternate
+            : item.primary,
+        }}
         style={styles.image}
         resizeMode="cover"
       />
     </Pressable>
   );
-
   return (
     <View style={styles.container}>
       <FlatList
@@ -74,7 +89,10 @@ export default function ImageGrid() {
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         numColumns={numColumns}
-        columnWrapperStyle={{ justifyContent: "space-between", marginBottom: margin }}
+        columnWrapperStyle={{
+          justifyContent: "space-between",
+          marginBottom: margin,
+        }}
       />
     </View>
   );
