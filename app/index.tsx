@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Image,
@@ -23,7 +23,7 @@ const imageData = [
 const screenWidth = Dimensions.get("window").width;
 const numColumns = 3;
 const margin = 8;
-const containerPadding = 100;
+const containerPadding = 32;
 const cellSize =
   ((screenWidth - containerPadding * 2 - margin * (numColumns - 1)) / numColumns) * 0.8;
 
@@ -34,26 +34,32 @@ export default function ImageGrid() {
       scale: 1,
     }))
   );
-  const handlePress = (index: number) => {
+
+  const handlePress = useCallback((index: number) => {
     setStates((prev) =>
       prev.map((state, i) => {
         if (i !== index) return state;
 
-        const newIsAlternate = !state.isAlternate;
-        const newScale = Math.min(state.scale * 1.2, 2);
+        const nextScale = Math.min(state.scale * 1.2, 2);
+        const toggleAlternate = !state.isAlternate;
 
-        return { isAlternate: newIsAlternate, scale: newScale };
+        return {
+          isAlternate: toggleAlternate,
+          scale: nextScale,
+        };
       })
+    );
+  }, []);
+
+  const handleImageError = (index: number) => {
+    setStates((prev) =>
+      prev.map((state, i) =>
+        i === index ? { ...state, isAlternate: false } : state
+      )
     );
   };
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: typeof imageData[0];
-    index: number;
-  }) => (
+  const renderItem = ({ item, index }: { item: typeof imageData[0]; index: number }) => (
     <Pressable
       onPress={() => handlePress(index)}
       style={[
@@ -67,6 +73,7 @@ export default function ImageGrid() {
         }}
         style={styles.image}
         resizeMode="cover"
+        onError={() => handleImageError(index)}
       />
     </Pressable>
   );
