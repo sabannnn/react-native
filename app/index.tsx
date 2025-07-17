@@ -24,64 +24,77 @@ const screenWidth = Dimensions.get("window").width;
 const numColumns = 3;
 const margin = 8;
 const padding = 16;
-const cellSize =
-  (screenWidth - padding * 2 - margin * (numColumns - 1)) / numColumns;
+const cellSize = (screenWidth - padding * 2 - margin * (numColumns - 1)) / numColumns;
+
+// Konstanta untuk penskalaan
+const SCALE_INCREMENT = 0.3;
+const MAX_SCALE = 2.0;
+const MIN_SCALE = 1.0;
 
 export default function ImageGrid() {
   const [states, setStates] = useState(
     imageData.map(() => ({
       isAlternate: false,
-      scale: 1,
+      scale: MIN_SCALE,
     }))
   );
 
-  const handlePress = (index: number) => {
+  const handlePress = (index) => {
     setStates((prev) =>
       prev.map((state, i) => {
         if (i !== index) return state;
 
-        if (state.scale >= 2) {
-          return {
-            ...state,
-            isAlternate: !state.isAlternate,
-            scale: 2,
-          };
+        // Hitung skala berikutnya
+        let nextScale = state.scale + SCALE_INCREMENT;
+        
+        // Jika sudah mencapai maksimum, reset ke minimum
+        if (nextScale > MAX_SCALE) {
+          nextScale = MIN_SCALE;
         }
-
-        const nextScale = parseFloat((state.scale * 1.2).toFixed(1));
+        
+        // Batasi skala maksimum
+        nextScale = Math.min(nextScale, MAX_SCALE);
+        
         return {
           isAlternate: !state.isAlternate,
-          scale: nextScale > 2 ? 2 : nextScale,
+          scale: Number(nextScale.toFixed(1)),
         };
       })
     );
   };
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: typeof imageData[0];
-    index: number;
-  }) => (
+  // Fungsi untuk reset semua gambar ke skala normal
+  const resetAllScales = () => {
+    setStates((prev) =>
+      prev.map((state) => ({
+        ...state,
+        scale: MIN_SCALE,
+      }))
+    );
+  };
+
+  const renderItem = ({ item, index }) => (
     <Pressable
       onPress={() => handlePress(index)}
+      onLongPress={resetAllScales} // Long press untuk reset semua
       style={[
         styles.cell,
-        { transform: [{ scale: states[index].scale }] },
+        { 
+          transform: [{ scale: states[index].scale }],
+          zIndex: states[index].scale > MIN_SCALE ? 1 : 0, // Gambar yang diperbesar di atas
+        },
       ]}
     >
       <Image
         source={{
-          uri: states[index].isAlternate
-            ? item.alternate
-            : item.primary,
+          uri: states[index].isAlternate ? item.alternate : item.primary,
         }}
         style={styles.image}
         resizeMode="cover"
       />
     </Pressable>
   );
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -93,10 +106,12 @@ export default function ImageGrid() {
           justifyContent: "space-between",
           marginBottom: margin,
         }}
+        contentContainerStyle={styles.flatListContent}
       />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,6 +120,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: padding,
   },
+  flatListContent: {
+    paddingVertical: 10,
+  },
   cell: {
     width: cellSize,
     height: cellSize,
@@ -112,6 +130,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: "hidden",
     elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   image: {
     width: "100%",
