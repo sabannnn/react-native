@@ -38,56 +38,57 @@ const imageData = [
 ];
 
 const screenWidth = Dimensions.get("window").width;
-const margin = 8;
-const numColumns = 9;
-const CELL_SIZE = (screenWidth - margin * (numColumns + 1)) / numColumns;
+const margin = 5;
+const numColumns = 3;
+const CELL_SIZE = 80;
 
-export default function App() {
+export default function ImageGrid() {
   const [states, setStates] = useState(
     imageData.map(() => ({
-      currentImage: 'primary',
+      isAlternate: false,
       scale: 1,
     }))
   );
 
-  const handlePress = (idx: number) => {
-    setStates((prev) =>
-      prev.map((item, i) => {
-        if (i !== idx) return item;
-        const newScale = Math.min(item.scale * 1.2, 2);
-        const newImage = item.currentImage === 'primary' ? 'alternate' : 'primary';
-
-        return {
-          currentImage: newImage,
-          scale: newScale,
-        };
-      })
+  const handlePress = (index: number) => {
+    setStates(prevStates =>
+      prevStates.map((state, i) =>
+        i === index
+          ? {
+              isAlternate: !state.isAlternate,
+              scale: Math.min(state.scale * 1.2, 2),
+            }
+          : state
+      )
     );
   };
 
+  const rows = [];
+  for (let i = 0; i < imageData.length; i += 3) {
+    rows.push(imageData.slice(i, i + 3));
+  }
+
   return (
     <View style={styles.container}>
-      {Array.from({ length: 3 }, (_, rowIndex) => (
-        <View key={rowIndex} style={styles.row}>
-          {imageData.slice(rowIndex * 3, (rowIndex + 1) * 3).map((img, idx) => {
-            const absoluteIdx = rowIndex * 3 + idx;
+      {rows.map((row, rowIdx) => (
+        <View key={rowIdx} style={styles.row}>
+          {row.map((image, colIdx) => {
+            const index = rowIdx * 3 + colIdx;
             return (
               <Pressable
-                key={img.id}
-                onPress={() => handlePress(absoluteIdx)}
+                key={image.id}
+                onPress={() => handlePress(index)}
                 style={styles.cell}
               >
                 <Image
                   source={{
-                    uri: states[absoluteIdx].currentImage === 'primary' 
-                      ? img.primary 
-                      : img.alternate,
+                    uri: states[index].isAlternate
+                      ? image.alternate
+                      : image.primary,
                   }}
                   style={[
                     styles.image,
-                    { transform: [{ 
-                      scale: states[absoluteIdx].scale 
-                    }] },
+                    { transform: [{ scale: states[index].scale }] },
                   ]}
                   resizeMode="cover"
                 />
@@ -106,25 +107,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    paddingVertical: 16,
+    padding: 10,
   },
   row: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: margin,
   },
   cell: {
     width: CELL_SIZE,
     height: CELL_SIZE,
-    marginHorizontal: margin / 2,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: '#f0f0f0',
+    margin: 5,
+    backgroundColor: "#f8f8f8",
     borderRadius: 6,
-    overflow: 'hidden',
+    overflow: "hidden",
+    elevation: 2,
   },
   image: {
-    width: "50%",
-    height: "50%",
+    width: "100%",
+    height: "100%",
   },
 });
