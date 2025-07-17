@@ -40,6 +40,7 @@ export default function ImageGrid() {
       prev.map((state, i) => {
         if (i !== index) return state;
 
+
         if (state.scale >= 2) {
           return {
             ...state,
@@ -47,6 +48,7 @@ export default function ImageGrid() {
             scale: 2,
           };
         }
+
 
         const nextScale = parseFloat((state.scale * 1.2).toFixed(1));
         return {
