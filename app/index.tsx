@@ -6,17 +6,36 @@ export default function IndexPage() {
       <Text style={styles.title}>Contoh Semua Font berdasarkan nama teman kelas</Text>
       {}
       {}
-      
-      <Text style={styles.firaCode}>MUH.FARREL APTA INDRATAMA</Text>
-      <Text style={styles.interItalic}>FAUZAN AZHARI RAHMAN</Text>
-      <Text style={styles.latoBlack}>MUH. FADIL AHMAD</Text>
-      <Text style={styles.manrope}>DAYANG AISYAH</Text>
-      <Text style={styles.montserratBold}>ILFAUZA FEBRIANTY FAISAL</Text>
-      <Text style={styles.mySoul}>NURFADILA SARI</Text>
-      <Text style={styles.openSansItalic}>WA NANDA SULISTRIAN</Text>
-      <Text style={styles.oswald}>MUH. TEGAR ALFIKRI</Text>
-      <Text style={styles.ralewayItalic}>RAIHANATUL JANNAH</Text>
-      <Text style={styles.robotoItalic}>HANNA MARYAM</Text>
+    <Text style={styles.interItalic}>
+      105841109622 FAUZAN AZHARI RAHMAN
+      </Text>
+    <Text style={styles.latoBlack}>
+      105841109722 MUH. FADIL AHMAD
+      </Text>
+    <Text style={styles.manrope}>
+      105841109822 DAYANG AISYAH
+      </Text>
+    <Text style={styles.firaCode}>
+      105841109922 MUH. ZAIN HIDAYAT
+      </Text>
+    <Text style={styles.montserratBold}>
+      105841110222 ILFAUZA FEBRIANTY FAISAL
+      </Text>
+    <Text style={styles.mySoul}>
+      105841110422 NURFADILA SARI
+      </Text>
+    <Text style={styles.openSansItalic}>
+      105841110522 MUH. HIJRIL ILMAN
+      </Text>
+    <Text style={styles.robotoItalic}>
+      105841110622 WA NANDA SULISTRIAN
+      </Text>
+    <Text style={styles.oswald}>
+      105841110722 MUH. TEGAR ALFIKRI
+      </Text>
+    <Text style={styles.ralewayItalic}>
+      105841110822RAIHANATUL JANNAH
+      </Text>
     </ScrollView>
   );
 }
@@ -24,55 +43,55 @@ export default function IndexPage() {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 60,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     alignItems: 'center',
     gap: 18,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
   },
   firaCode: {
     fontFamily: 'FiraCode-Variable',
-    fontSize: 20,
+    fontSize: 21,
   },
   interItalic: {
     fontFamily: 'Inter-Italic',
-    fontSize: 20,
-    fontWeight: '500', // Kita bisa set fontWeight karena ini variable font
+    fontSize: 22,
+    fontWeight: '500',
   },
   latoBlack: {
     fontFamily: 'Lato-Black',
-    fontSize: 22,
+    fontSize: 23,
   },
   manrope: {
     fontFamily: 'Manrope-Variable',
-    fontSize: 20,
+    fontSize: 24,
   },
   montserratBold: {
     fontFamily: 'Montserrat-Bold',
-    fontSize: 22,
+    fontSize: 25,
   },
   mySoul: {
     fontFamily: 'MySoul-Regular',
-    fontSize: 28,
+    fontSize: 26,
   },
   openSansItalic: {
     fontFamily: 'OpenSans-Italic',
-    fontSize: 20,
+    fontSize: 27,
   },
   oswald: {
     fontFamily: 'Oswald-Variable',
-    fontSize: 22,
+    fontSize: 28,
     fontWeight: '600',
   },
   ralewayItalic: {
     fontFamily: 'Raleway-Italic',
-    fontSize: 20,
+    fontSize: 29,
   },
   robotoItalic: {
     fontFamily: 'Roboto-ExtraBoldItalic',
-    fontSize: 22,
+    fontSize: 30,
   },
 });
