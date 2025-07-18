@@ -1,13 +1,4 @@
 import React, { useState } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
 
 const imageData = [
   {
@@ -57,83 +48,87 @@ const imageData = [
   },
 ];
 
-const { width } = Dimensions.get("window");
-const cellMargin = 5;
-const numColumns = 3;
-const cellSize = (width - cellMargin * 2 * numColumns - 100) / numColumns;
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+    padding: '20px',
+    minHeight: '100vh',
+    boxSizing: 'border-box',
+  },
+  grid: {
+    display: 'flex',
+    flexWrap: "wrap",
+    justifyContent: "center",
+    maxWidth: '800px',
+    width: '100%',
+  },
+  cell: {
+    flex: '1 1 calc(33.333% - 20px)',
+    maxWidth: 'calc(33.333% - 20px)',
+    margin: '10px',
+    aspectRatio: '1 / 1',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: '12px',
+    boxShadow: "0 2px 4px rgba(0,0,0,0.25)",
+    overflow: 'hidden',
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease',
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: 'cover',
+    transition: 'transform 0.3s ease',
+  },
+};
 
-export default function HomeScreen() {
+export default function App() {
   const [states, setStates] = useState(
-    Array(9)
+    Array(imageData.length)
       .fill(0)
       .map(() => ({ isAlt: false, scale: 1 }))
   );
-
   const handlePress = (index) => {
     setStates((prevStates) =>
       prevStates.map((state, i) => {
         if (i !== index) return state;
+        if (state.isAlt) {
+          return { isAlt: false, scale: 1 };
+        }
         const nextScale = Math.min(state.scale * 1.2, 2);
-        const toggleAlt = !state.isAlt;
         return {
-          isAlt: toggleAlt,
-          scale: nextScale >= 2 ? 2 : nextScale,
+          isAlt: true,
+          scale: nextScale,
         };
       })
     );
   };
-
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <StatusBar hidden />
-      <View style={styles.grid}>
+    <div style={styles.container}>
+      <div style={styles.grid}>
         {imageData.map((img, index) => (
-          <TouchableOpacity
+          <div
             key={img.id}
-            onPress={() => handlePress(index)}
+            onClick={() => handlePress(index)}
             style={styles.cell}
-            activeOpacity={0.8}
           >
-            <Image
-              source={{
-                uri: states[index].isAlt ? img.alternate : img.primary,
+            {}
+            <img
+              src={states[index].isAlt ? img.alternate : img.primary}
+              alt={`Gallery image ${img.id}`}
+              style={{
+                ...styles.image,
+                transform: `scale(${states[index].scale})`,
               }}
-              style={[
-                styles.image,
-                { transform: [{ scale: states[index].scale }] },
-              ]}
             />
-          </TouchableOpacity>
+          </div>
         ))}
-      </View>
-    </ScrollView>
+      </div>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-  },
-  cell: {
-    width: cellSize,
-    height: cellSize,
-    margin: cellMargin,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#eee",
-    borderRadius: 10,
-  },
-  image: {
-    width: cellSize - 10,
-    height: cellSize - 10,
-    borderRadius: 10,
-  },
-});
