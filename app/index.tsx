@@ -10,12 +10,12 @@ export default function IndexPage() {
       {
 
       }
-    <Text style={styles.interItalic}>
-      105841109622 FAUZAN AZHARI RAHMAN</Text>
     <Text style={styles.latoBlack}>
       105841109722 MUH. FADIL AHMAD</Text>
     <Text style={styles.manrope}>
       105841109822 DAYANG AISYAH</Text>
+    <Text style={styles.interItalic}>
+      105841109922 USRAN</Text>
     <Text style={styles.firaCode}>
       105841100122 MUH. ZAIN HIDAYAT</Text>
     <Text style={styles.montserratBold}>
