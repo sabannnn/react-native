@@ -4,38 +4,32 @@ export default function IndexPage() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Contoh Semua Font berdasarkan nama teman kelas</Text>
-      {}
-      {}
+      {
+
+      }
+      {
+
+      }
     <Text style={styles.interItalic}>
-      105841109622 FAUZAN AZHARI RAHMAN
-      </Text>
+      105841109622 FAUZAN AZHARI RAHMAN</Text>
     <Text style={styles.latoBlack}>
-      105841109722 MUH. FADIL AHMAD
-      </Text>
+      105841109722 MUH. FADIL AHMAD</Text>
     <Text style={styles.manrope}>
-      105841109822 DAYANG AISYAH
-      </Text>
+      105841109822 DAYANG AISYAH</Text>
     <Text style={styles.firaCode}>
-      105841109922 MUH. ZAIN HIDAYAT
-      </Text>
+      105841100122 MUH. ZAIN HIDAYAT</Text>
     <Text style={styles.montserratBold}>
-      105841110222 ILFAUZA FEBRIANTY FAISAL
-      </Text>
+      105841110222 ILFAUZA FEBRIANTY FAISAL</Text>
     <Text style={styles.mySoul}>
-      105841110422 NURFADILA SARI
-      </Text>
+      105841110422 NURFADILA SARI</Text>
     <Text style={styles.openSansItalic}>
-      105841110522 MUH. HIJRIL ILMAN
-      </Text>
+      105841110522 MUH. HIJRIL ILMAN</Text>
     <Text style={styles.robotoItalic}>
-      105841110622 WA NANDA SULISTRIAN
-      </Text>
+      105841110622 WA NANDA SULISTRIAN</Text>
     <Text style={styles.oswald}>
-      105841110722 MUH. TEGAR ALFIKRI
-      </Text>
+      105841110722 MUH. TEGAR ALFIKRI</Text>
     <Text style={styles.ralewayItalic}>
-      105841110822RAIHANATUL JANNAH
-      </Text>
+      105841110822 RAIHANATUL JANNAH</Text>
     </ScrollView>
   );
 }
@@ -54,44 +48,45 @@ const styles = StyleSheet.create({
   },
   firaCode: {
     fontFamily: 'FiraCode-Variable',
-    fontSize: 21,
+    fontSize: 30,
   },
   interItalic: {
     fontFamily: 'Inter-Italic',
-    fontSize: 22,
+    fontSize: 31,
     fontWeight: '500',
   },
   latoBlack: {
     fontFamily: 'Lato-Black',
-    fontSize: 23,
+    fontSize: 32,
+    fontWeight: '900',
   },
   manrope: {
     fontFamily: 'Manrope-Variable',
-    fontSize: 24,
+    fontSize: 33,
   },
   montserratBold: {
     fontFamily: 'Montserrat-Bold',
-    fontSize: 25,
+    fontSize: 34,
   },
   mySoul: {
     fontFamily: 'MySoul-Regular',
-    fontSize: 26,
+    fontSize: 35,
   },
   openSansItalic: {
     fontFamily: 'OpenSans-Italic',
-    fontSize: 27,
+    fontSize: 36,
   },
   oswald: {
     fontFamily: 'Oswald-Variable',
-    fontSize: 28,
+    fontSize: 37,
     fontWeight: '600',
   },
   ralewayItalic: {
     fontFamily: 'Raleway-Italic',
-    fontSize: 29,
+    fontSize: 38,
   },
   robotoItalic: {
     fontFamily: 'Roboto-ExtraBoldItalic',
-    fontSize: 30,
+    fontSize: 39,
   },
 });
