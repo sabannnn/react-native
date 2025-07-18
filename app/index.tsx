@@ -93,13 +93,16 @@ export default function App() {
       .fill(0)
       .map(() => ({ isAlt: false, scale: 1 }))
   );
+
   const handlePress = (index) => {
     setStates((prevStates) =>
       prevStates.map((state, i) => {
         if (i !== index) return state;
-        if (state.isAlt) {
+
+        if (state.scale >= 2) {
           return { isAlt: false, scale: 1 };
         }
+
         const nextScale = Math.min(state.scale * 1.2, 2);
         return {
           isAlt: true,
@@ -108,6 +111,7 @@ export default function App() {
       })
     );
   };
+
   return (
     <div style={styles.container}>
       <div style={styles.grid}>
@@ -117,10 +121,9 @@ export default function App() {
             onClick={() => handlePress(index)}
             style={styles.cell}
           >
-            {}
             <img
               src={states[index].isAlt ? img.alternate : img.primary}
-              alt={`Gallery image ${img.id}`}
+              alt={`Gambar galeri ${img.id}`}
               style={{
                 ...styles.image,
                 transform: `scale(${states[index].scale})`,
