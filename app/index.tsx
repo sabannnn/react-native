@@ -48,50 +48,9 @@ const imageData = [
   },
 ];
 
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    padding: '20px',
-    minHeight: '100vh',
-    boxSizing: 'border-box',
-  },
-  grid: {
-    display: 'flex',
-    flexWrap: "wrap",
-    justifyContent: "center",
-    maxWidth: '800px',
-    width: '100%',
-  },
-  cell: {
-    flex: '1 1 calc(33.333% - 20px)',
-    maxWidth: 'calc(33.333% - 20px)',
-    margin: '10px',
-    aspectRatio: '1 / 1',
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    borderRadius: '12px',
-    boxShadow: "0 2px 4px rgba(0,0,0,0.25)",
-    overflow: 'hidden',
-    cursor: 'pointer',
-    transition: 'transform 0.3s ease',
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: 'cover',
-    transition: 'transform 0.3s ease',
-  },
-};
-
 export default function App() {
   const [states, setStates] = useState(
-    Array(imageData.length)
-      .fill(0)
-      .map(() => ({ isAlt: false, scale: 1 }))
+    Array(imageData.length).fill(0).map(() => ({ isAlt: false, scale: 1 }))
   );
 
   const handlePress = (index) => {
@@ -99,13 +58,10 @@ export default function App() {
       prevStates.map((state, i) => {
         if (i !== index) return state;
 
-        if (state.scale >= 2) {
-          return { isAlt: false, scale: 1 };
-        }
-
-        const nextScale = Math.min(state.scale * 1.2, 2);
+    const nextScale = Math.min
+      (state.scale * 1.2, 2);
         return {
-          isAlt: true,
+          isAlt: !state.isAlt,
           scale: nextScale,
         };
       })
@@ -113,19 +69,48 @@ export default function App() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.grid}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f0f0f0",
+        padding: "20px",
+        minHeight: "100vh",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
+          maxWidth: "800px",
+          width: "100%",
+        }}
+      >
         {imageData.map((img, index) => (
           <div
             key={img.id}
             onClick={() => handlePress(index)}
-            style={styles.cell}
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: "8px",
+              overflow: "hidden",
+              cursor: "pointer",
+              aspectRatio: "1 / 1",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              display: "flex",
+            }}
           >
             <img
               src={states[index].isAlt ? img.alternate : img.primary}
-              alt={`Gambar galeri ${img.id}`}
+              alt={`Gambar ${img.id}`}
               style={{
-                ...styles.image,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transition: "transform 0.3s ease",
                 transform: `scale(${states[index].scale})`,
               }}
             />
