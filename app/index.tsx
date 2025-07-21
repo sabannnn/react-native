@@ -1,49 +1,95 @@
-import { Text, View, ScrollView } from "react-native";
-import AntDesign from '@expo/vector-icons/AntDesign';
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-export default function Index() {
+export default function IndexPage() {
   return (
-    <ScrollView contentContainerStyle={{ padding: 20, alignItems: 'center' }}>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="home" size={32} color="#e74c3c" />
-        <Text style={{ marginTop: 6 }}>Home Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="user" size={32} color="#2980b9" />
-        <Text style={{ marginTop: 6 }}>User Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="checkcircle" size={32} color="#27ae60" />
-        <Text style={{ marginTop: 6 }}>Check Circle Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="windows" size={32} color="#8e44ad" />
-        <Text style={{ marginTop: 6 }}>Windows Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="smile-circle" size={32} color="#f1c40f" />
-        <Text style={{ marginTop: 6 }}>Smile Circle Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="pushpin" size={32} color="#e67e22" />
-        <Text style={{ marginTop: 6 }}>Pushpin Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="eye" size={32} color="#16a085" />
-        <Text style={{ marginTop: 6 }}>Eye Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="piechart" size={32} color="#34495e" />
-        <Text style={{ marginTop: 6 }}>Piechart Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="dotchart" size={32} color="#c0392b" />
-        <Text style={{ marginTop: 6 }}>Dotchart Icon</Text>
-      </View>
-      <View style={{ alignItems: 'center', marginBottom: 16 }}>
-        <AntDesign name="barchart" size={32} color="#2ecc71" />
-        <Text style={{ marginTop: 6 }}>Barchart Icon</Text>
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      {}
+      <Text style={styles.title}>5 nama sebelum </Text>
+      <Text style={styles.latoBlack}>FAUZAN AZHARI RAHMAN</Text>
+      <Text style={styles.manrope}>MUH.FADHIL AHMAD</Text>
+      <Text style={styles.interItalic}>DAYANG AISYAH</Text>
+      <Text style={styles.montserratBold}>MUH. ZAIN HIDAYAT</Text>
+      <Text style={styles.firaCode}>ILFAUZA FEBRIANTY FAISAL</Text>
+      {}
+      <Text style={styles.title}>5 nama sesudah</Text>
+      <Text style={styles.mySoul}>SA'BAN</Text>
+      <Text style={styles.openSansItalic}>NUR FADILLAH SARI</Text>
+      <Text style={styles.robotoItalic}>MUH. HIJRIL ILMAN</Text>
+      <Text style={styles.oswald}>Wa Nanda Sulystrian</Text>
+      <Text style={styles.ralewayItalic}>MUH. TEGAR AL FIKRI</Text>
     </ScrollView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 60,
+    paddingHorizontal: 30,
+    alignItems: 'center',
+    gap: 18,
+    backgroundColor: '#f5f5f5ff',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+
+  latoBlack: {
+    fontFamily: 'Lato-Black',
+    fontWeight: '900',
+    color: '#0d0d0eff',
+  },
+  montserratBold: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 23,
+    color: '#0b0a0aff',
+  },
+  mySoul: {
+    fontFamily: 'MySoul-Regular',
+    color: '#0b0a0bff',
+    fontSize: 24,
+  },
+  openSansItalic: {
+    fontFamily: 'OpenSans-Italic',
+    fontSize: 22,
+    color: '#141413ff',
+  },
+  robotoItalic: {
+    fontFamily: 'Roboto-ExtraBoldItalic', 
+    fontSize: 24,
+    color: '#0e0f0eff',
+  },
+
+  // Variable Fonts
+  firaCode: {
+    fontFamily: 'FiraCode-Variable',
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#111111ff',
+  },
+  interItalic: {
+    fontFamily: 'Inter-Italic-Variable',
+    fontSize: 23,
+    fontWeight: '500',
+    color: '#151515ff',
+  },
+  manrope: {
+    fontFamily: 'Manrope-Variable',
+    fontSize: 25,
+    fontWeight: '600',
+    color: '#0c0c0cff',
+  },
+  oswald: {
+    fontFamily: 'Oswald-Variable',
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#0e0f0fff',
+  },
+  ralewayItalic: {
+    fontFamily: 'Raleway-Italic-Variable',
+    fontSize: 23,
+    fontWeight: '400',
+    color: '#181718ff',
+  },
+});
