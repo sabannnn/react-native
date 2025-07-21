@@ -1,34 +1,49 @@
-import {
-  StyleSheet, 
-  Text,
-   View, 
-   ScrollView
-   } from 'react-native';
+import { Text, View, ScrollView } from "react-native";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function IndexPage() {
+export default function Index() {
   return (
-    <ScrollView contentContainerStyle=
-    {styles.container}>
-      {}
-
-      {}
-    <Text style={styles.latoBlack}>MUH. FADIL AHMAD 105841109722</Text><Text style={styles.manrope}>DAYANG AISYAH 105841109822</Text><Text style={styles.interItalic}>USRAN 105841109922</Text><Text style={styles.firaCode}>MUH. ZAIN HIDAYAT 105841100122 </Text><Text style={styles.montserratBold}>ILFAUZA FEBRIANTY FAISAL 105841110222</Text>
-    <Text style={styles.mySoul}>105841110422 NURFADILA SARI</Text><Text style={styles.openSansItalic}>105841110522 MUH. HIJRIL ILMAN</Text><Text style={styles.robotoItalic}>105841110622 WA NANDA SULISTRIAN</Text><Text style={styles.oswald}>105841110722 MUH. TEGAR ALFIKRI</Text><Text style={styles.ralewayItalic}>105841110822 RAIHANATUL JANNAH</Text></ScrollView>
+    <ScrollView contentContainerStyle={{ padding: 20, alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="home" size={32} color="#e74c3c" />
+        <Text style={{ marginTop: 6 }}>Home Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="user" size={32} color="#2980b9" />
+        <Text style={{ marginTop: 6 }}>User Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="checkcircle" size={32} color="#27ae60" />
+        <Text style={{ marginTop: 6 }}>Check Circle Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="windows" size={32} color="#8e44ad" />
+        <Text style={{ marginTop: 6 }}>Windows Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="smile-circle" size={32} color="#f1c40f" />
+        <Text style={{ marginTop: 6 }}>Smile Circle Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="pushpin" size={32} color="#e67e22" />
+        <Text style={{ marginTop: 6 }}>Pushpin Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="eye" size={32} color="#16a085" />
+        <Text style={{ marginTop: 6 }}>Eye Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="piechart" size={32} color="#34495e" />
+        <Text style={{ marginTop: 6 }}>Piechart Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="dotchart" size={32} color="#c0392b" />
+        <Text style={{ marginTop: 6 }}>Dotchart Icon</Text>
+      </View>
+      <View style={{ alignItems: 'center', marginBottom: 16 }}>
+        <AntDesign name="barchart" size={32} color="#2ecc71" />
+        <Text style={{ marginTop: 6 }}>Barchart Icon</Text>
+      </View>
+    </ScrollView>
   );
 }
-const styles =
-StyleSheet.create({
-  container: 
-  {paddingVertical: 60,paddingHorizontal: 30,alignItems: 'center',gap: 18,},
-  title: {fontSize: 32,fontWeight: 'bold',marginBottom: 20,},
-  firaCode: {fontFamily: 'FiraCode-Variable',fontSize: 30,},
-  interItalic: {fontFamily: 'Inter-Italic',fontSize: 31,fontWeight: '500',},
-  latoBlack:{fontFamily: 'Lato-Black',fontSize: 32,fontWeight: '900',},
-  manrope: {fontFamily: 'Manrope-Variable',fontSize: 33,},
-  montserratBold: {fontFamily: 'Montserrat-Bold',fontSize: 34,},
-  mySoul: {fontFamily: 'MySoul-Regular',fontSize: 35,},
-  openSansItalic: {fontFamily: 'OpenSans-Italic',fontSize: 36,},
-  oswald: {fontFamily: 'Oswald-Variable',fontSize: 37,fontWeight: '600',},
-  ralewayItalic: {fontFamily: 'Raleway-Italic',fontSize: 38,},
-  robotoItalic: {fontFamily: 'Roboto-ExtraBoldItalic',fontSize: 39,},
-});
