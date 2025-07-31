@@ -1,50 +1,30 @@
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { Tabs } from 'expo-router';
+import { FontAwesome } from '@expo/vector-icons';
 
-
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout()
- {
-  const [fontsLoaded, fontError] = useFonts({
-    // --- FONT VARIABEL ---
-    'FiraCode-Variable':
-    require('../assets/fonts/FiraCode-VariableFont_wght.ttf'),
-    'Inter-Italic':
-    require('../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf'),
-    'Manrope-Variable':
-    require('../assets/fonts/Manrope-VariableFont_wght.ttf'),
-    'Oswald-Variable':
-    require('../assets/fonts/Oswald-VariableFont_wght.ttf'),
-    'Raleway-Italic':
-    require('../assets/fonts/Raleway-Italic-VariableFont_wght.ttf'),
-    // --- FONT STATIS ---
-    'Lato-Black':
-    require('../assets/fonts/Lato-Black.ttf'),      
-    'Montserrat-Bold':
-    require('../assets/fonts/Montserrat-Bold.ttf'),       
-    'MySoul-Regular':
-    require('../assets/fonts/MySoul-Regular.ttf'),       
-    'OpenSans-Italic':
-    require('../assets/fonts/OpenSans-Italic.ttf'),      
-    'Roboto-ExtraBoldItalic':
-    require('../assets/fonts/Roboto-ExtraBoldItalic.ttf'),
-  });
-  useEffect(() => {
-    if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
+export default function AppLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{
-         headerShown: false 
-         }} />
-    </Stack>
+    <Tabs>
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="about"
+        options={{
+          title: 'About',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="info-circle" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profil',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+        }}
+      />
+    </Tabs>
   );
 }
