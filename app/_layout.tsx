@@ -1,16 +1,11 @@
-import { Tabs } from 'expo-router';
-import { FontAwesome } from '@expo/vector-icons';
+// app/_layout.tsx
+import { Stack } from 'expo-router';
 
-export default function AppLayout() {
+export default function RootLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Daftar Mahasiswa',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
-        }}
-      />
-    </Tabs>
+    <Stack>
+      <Stack.Screen name="index" options={{ title: 'Daftar Mahasiswa' }} />
+      <Stack.Screen name="mahasiswa/[id]" options={{ title: 'Detail Mahasiswa' }} />
+    </Stack>
   );
 }

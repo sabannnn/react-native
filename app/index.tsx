@@ -1,4 +1,3 @@
-// EXPO-SABAN/app/index.tsx
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,7 +10,7 @@ export default function HomeScreen() {
         data={mahasiswaData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Link href={`/detail mahasiswa/${item.id}`} asChild>
+          <Link href={`/mahasiswa/${item.id}`} asChild>
             <TouchableOpacity style={styles.item}>
               <Ionicons name="person-circle-outline" size={24} color="#333" style={styles.icon} />
               <Text style={styles.nama}>{item.nama}</Text>
